@@ -211,23 +211,32 @@ LICENSE_ONLY=1 node tools/fetch-photos.mjs   # 只取"可自由使用"许可的�
 
 ## 发布到 GitHub Pages
 
-仓库已经初始化好(分支 `main`,含 `.nojekyll` 与 `.gitignore`),推上去之后在仓库
-**Settings → Pages → Source** 选 `Deploy from a branch`、分支选 `main`、目录选 `/ (root)`,
-大约一分钟后就能通过下面这个地址访问:
+**线上地址:<https://smile6-code.github.io/luxiangju/>**
 
-```
-https://<你的用户名>.github.io/<仓库名>/
-```
+仓库:<https://github.com/smile6-code/luxiangju>(公开)
 
-因为是纯静态站点,不需要任何构建步骤,GitHub 会直接托管 `index.html`。
+分支 `main`,Pages 已开启(Source 为 `main` 的 `/ (root)`)。纯静态站点,不需要构建步骤,
+GitHub 直接托管 `index.html`,推到 `main` 后约一分钟自动更新。
 
-以后改完内容,推送三步:
+### 日常更新
+
+改完内容后:
 
 ```bash
 git add -A
 git commit -m "更新内容"
-git push
+pwsh -File tools/push-via-api.ps1
 ```
 
-> 注意:`assets/img/candidates/`(抓取的照片候选,约 17MB)已在 `.gitignore` 里排除,
-> 不会上传。确定不用可以直接删掉这个目录。
+> **为什么不用 `git push`**:这台机器所在的网络把 `github.com` 的 443 端口封了
+> (四个公共 DNS 都解析到同一个被封 IP),普通 `git push` 会超时。
+> 但 `api.github.com` 和 `github.io` 是通的,所以 `tools/push-via-api.ps1`
+> 改用 Git Data API 走 `api.github.com` 把文件推上去,并且复用了 GitHub Desktop
+> 已登录的凭据,不需要额外配置 SSH 或代理。
+>
+> 如果哪天换到能正常访问 github.com 的网络,直接 `git push` 也可以。
+
+### 仓库里不包含
+
+`assets/img/candidates/`(抓取的照片候选,约 17MB 临时素材)已在 `.gitignore` 中排除,不会上传。
+确定不用可以直接删掉这个目录。
