@@ -1,8 +1,11 @@
 # 在 github.com:443 被墙、但 api.github.com 可用的网络下,用 Git Data API 完成推送。
 # 复用 GitHub Desktop 已登录的凭据,无需另外配置 SSH 或代理。
 #
-#   pwsh -File tools/push-via-api.ps1                      推送当前工作区
-#   pwsh -File tools/push-via-api.ps1 -Message "更新内容"   自定义提交说明
+#   pwsh -File tools/push-via-api.ps1
+#   pwsh -File tools/push-via-api.ps1 -Message "更新了菜单价格"
+#
+# 会自动 git add -A 并做一次本地提交,再把整棵目录树推到 GitHub。
+# 新增文件、删除文件都能正确处理。
 param(
   [string]$Owner = 'smile6-code',
   [string]$Repo = 'luxiangju',
@@ -11,6 +14,22 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $Api = "https://api.github.com/repos/$Owner/$Repo"
+
+# ---- 0. 先把改动归拢到本地提交 ----
+if (-not (Test-Path '.git')) { throw "请在仓库根目录运行(当前:$((Get-Location).Path))" }
+git add -A
+git diff --cached --quiet
+$staged = ($LASTEXITCODE -ne 0)
+if ($staged) {
+  if (-not $Message) {
+    $Message = 'update: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm') + ' 更新站点内容'
+  }
+  git commit -q -m $Message
+  Write-Output ("本地提交  : " + (git log -1 --pretty='%h %s'))
+} else {
+  Write-Output "本地无改动,直接按当前内容重新推送一次"
+  if (-not $Message) { $Message = (git log -1 --pretty=%B).Trim() }
+}
 
 Add-Type -Namespace W32 -Name CredApi -MemberDefinition @"
 [DllImport("advapi32.dll", SetLastError=true, CharSet=CharSet.Unicode, EntryPoint="CredReadW")]
@@ -94,12 +113,10 @@ foreach ($f in $files) {
 }
 
 # ---- 4. 建 tree / commit / 更新 ref ----
-$newTree = (Api-Json 'POST' "$Api/git/trees" @{ tree = $tree; base_tree = $base.tree }).sha
+# 不用 base_tree:整棵树以当前文件列表为准,这样删除文件也能同步到 GitHub
+$newTree = (Api-Json 'POST' "$Api/git/trees" @{ tree = $tree }).sha
 
-if (-not $Message) {
-  $Message = (git log -1 --pretty=%B).Trim()
-  if (-not $Message) { $Message = '更新站点' }
-}
+if (-not $Message) { $Message = '更新站点' }
 
 $commitBody = @{
   message = $Message
