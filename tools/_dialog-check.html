@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>dish dialog check</title>
+<style>
+  body{margin:0;font:12px/1.5 Consolas,monospace;background:#111;color:#ccc}
+  iframe{width:1440px;height:1000px;border:0;display:block;background:#000}
+  pre{padding:12px;white-space:pre-wrap;background:#000;color:#8f8;margin:0}
+</style>
+</head>
+<body>
+<pre id="out">working…</pre>
+<iframe id="f" src="../index.html"></iframe>
+<script>
+const out = document.getElementById('out');
+const f = document.getElementById('f');
+const L = [];
+const errs = [];
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+f.addEventListener('load', async () => {
+  const w = f.contentWindow, d = f.contentDocument;
+  w.addEventListener('error', (e) => errs.push(String(e.message)));
+
+  await wait(1800);
+
+  const hits = d.querySelectorAll('.dish__hit');
+  const details = d.querySelectorAll('.dish__detail');
+  const cards = d.querySelectorAll('.dish');
+  L.push('cards=' + cards.length + '  hitButtons=' + hits.length + '  detailBlocks=' + details.length);
+
+  const noMain = [], noSide = [], emptyMain = [], emptySide = [], noTip = [];
+  const names = Array.from(cards).map((c) => c.querySelector('.dish__head h3').textContent.trim());
+  details.forEach((det, i) => {
+    const groups = Array.from(det.querySelectorAll('.detail-group'));
+    const heads = groups.map((g) => g.querySelector('h4').textContent.trim());
+    if (heads.indexOf('主料') === -1) noMain.push(names[i]);
+    if (heads.indexOf('配菜') === -1) noSide.push(names[i]);
+    const mainG = groups.find((g) => g.querySelector('h4').textContent.trim() === '主料');
+    const sideG = groups.find((g) => g.querySelector('h4').textContent.trim() === '配菜');
+    if (!mainG || !mainG.querySelectorAll('.chip--main').length) emptyMain.push(names[i]);
+    if (!sideG || !sideG.querySelectorAll('.chip').length) emptySide.push(names[i]);
+    if (!det.querySelector('.detail-tip')) noTip.push(names[i]);
+  });
+  L.push('缺「主料」区块  ' + (noMain.length ? noMain.join(',') : '无'));
+  L.push('缺「配菜」区块  ' + (noSide.length ? noSide.join(',') : '无'));
+  L.push('主料为空        ' + (emptyMain.length ? emptyMain.join(',') : '无'));
+  L.push('配菜为空        ' + (emptySide.length ? emptySide.join(',') : '无'));
+  L.push('缺提示          ' + (noTip.length ? noTip.join(',') : '无'));
+  L.push('');
+
+  const dlg = d.getElementById('dishDialog');
+  const T = () => d.getElementById('dishDialogTitle').textContent.trim();
+  const C = () => d.getElementById('dishDialogCount').textContent.trim();
+  let closeEvents = 0;
+  dlg.addEventListener('close', () => { closeEvents += 1; });
+
+  hits[0].click();
+  await wait(700);
+  L.push('[打开第一道] open=' + dlg.open + '  标题=' + T() + '  计数=' + C());
+  L.push('  图片      ' + d.getElementById('dishDialogImg').getAttribute('src').split('/').pop());
+  const detailNode = d.getElementById('dishDialogDetail');
+  L.push('  分组标题  ' + Array.from(detailNode.querySelectorAll('.detail-group h4')).map((h) => h.textContent).join(' · '));
+  L.push('  主料标签  ' + Array.from(detailNode.querySelectorAll('.chip--main')).map((c) => c.textContent).join(' / '));
+  L.push('  配菜标签  ' + Array.from(detailNode.querySelectorAll('.chip:not(.chip--main)')).map((c) => c.textContent).join(' / '));
+  L.push('  技法      ' + Array.from(detailNode.querySelectorAll('.detail-meta dd')).map((c) => c.textContent).join(' | '));
+  L.push('  焦点在关闭键 ' + (d.activeElement === d.getElementById('dishDialogClose')));
+  L.push('  body 锁定  ' + d.body.classList.contains('is-locked'));
+  L.push('');
+
+  d.getElementById('dishDialogNext').click();
+  await wait(400);
+  L.push('[下一道]  标题=' + T() + '  计数=' + C());
+  d.getElementById('dishDialogPrev').click();
+  await wait(400);
+  L.push('[上一道]  标题=' + T() + '  计数=' + C());
+  L.push('');
+
+  hits[6].click();
+  await wait(500);
+  L.push('[第 7 道] 标题=' + T() + '  计数=' + C() + '  角标=' +
+    (d.getElementById('dishDialogTag').hidden ? '(无)' : d.getElementById('dishDialogTag').textContent));
+  L.push('');
+
+  d.getElementById('dishDialogBook').click();
+  await wait(500);
+  L.push('[点订座]  dialog.open=' + dlg.open + '  备注=' + JSON.stringify(d.getElementById('bkNote').value));
+  L.push('  close 事件次数=' + closeEvents + '  body 解锁=' + !d.body.classList.contains('is-locked'));
+  L.push('  文档是否被换掉=' + (f.contentDocument !== d) + '  d.body.class=' + JSON.stringify(d.body.className));
+  L.push('');
+
+  hits[0].click();
+  await wait(400);
+  d.getElementById('dishDialogClose').click();
+  await wait(400);
+  L.push('[关闭]  dialog.open=' + dlg.open + '  焦点归还卡片=' + (d.activeElement === hits[0]));
+  L.push('');
+
+  const coldTab = Array.from(d.querySelectorAll('.tab')).find((t) => t.dataset.filter === 'cold');
+  coldTab.click();
+  await wait(300);
+  const visible = Array.from(d.querySelectorAll('.dish')).filter((c) => !c.classList.contains('is-hidden'));
+  hits[0].click();
+  await wait(500);
+  L.push('[筛选「凉菜」后] 可见菜=' + visible.length + '  标题=' + T() + '  计数=' + C());
+  d.getElementById('dishDialogClose').click();
+  await wait(300);
+  L.push('');
+  L.push('errors   ' + (errs.length ? errs.join(' | ') : 'none'));
+  out.textContent = L.join('\n');
+});
+</script>
+</body>
+</html>

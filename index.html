@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#f7f3ea" />
+<title>鲁香居 · 泉城手作鲁菜</title>
+<meta name="description" content="鲁香居是济南芙蓉街的一间鲁菜小馆。清汤吊足八小时,奶汤熬到乳白,爆炒只争三秒——九转大肠、葱烧海参、糖醋黄河鲤鱼等经典鲁菜,支持在线订座。" />
+<meta name="keywords" content="鲁菜,山东菜,济南菜,九转大肠,葱烧海参,糖醋黄河鲤鱼,济南餐厅,在线订座" />
+<meta property="og:type" content="restaurant" />
+<meta property="og:title" content="鲁香居 · 泉城手作鲁菜" />
+<meta property="og:description" content="清汤吊八小时,爆炒只争三秒。济南芙蓉街的手作鲁菜小馆。" />
+<meta property="og:image" content="assets/img/hero-haishen.svg" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236e8f7a'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23fdfbf6' font-family='STSong,serif'%3E%E9%B2%81%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<noscript><style>
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .nav-toggle { display: none !important; }
+  /* 关闭 JS 时,卡片不可点,直接把主料/配菜摊在卡片里 */
+  .dish__hit { display: none !important; }
+  .dish__detail[hidden] { display: block !important; margin-top: 4px; }
+</style></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "鲁香居",
+  "servesCuisine": ["鲁菜", "山东菜", "济南菜"],
+  "priceRange": "¥¥",
+  "telephone": "+86-531-8619-8866",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "历下区芙蓉街 128 号",
+    "addressLocality": "济南市",
+    "addressRegion": "山东省",
+    "addressCountry": "CN"
+  },
+  "openingHours": ["Mo-Su 11:00-14:00", "Mo-Su 17:00-21:30"],
+  "acceptsReservations": "True"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主内容</a>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="shell header__inner">
+    <a class="brand" href="#top" aria-label="鲁香居 回到顶部">
+      <span class="brand__mark" aria-hidden="true">鲁</span>
+      <span class="brand__text">
+        <strong>鲁香居</strong>
+        <small>LUXIANGJU · JINAN</small>
+      </span>
+    </a>
+
+    <nav class="nav" id="primaryNav" aria-label="主导航">
+      <ul class="nav__list">
+        <li><a href="#about">关于</a></li>
+        <li><a href="#menu">招牌菜</a></li>
+        <li><a href="#craft">灶上功夫</a></li>
+        <li><a href="#gallery">店内</a></li>
+        <li><a href="#booking">订座</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href="tel:+8653186198866">
+        <span class="header__phone-label">订座电话</span>
+        <span class="header__phone-num">0531-8619 8866</span>
+      </a>
+      <a class="btn btn--solid btn--sm" href="#booking">立即订座</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="打开导航菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="hero__glow hero__glow--a"></span>
+      <span class="hero__glow hero__glow--b"></span>
+      <span class="hero__grain"></span>
+    </div>
+
+    <div class="shell hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow"><span class="eyebrow__line"></span>济南 · 芙蓉街 · 1998 年开灶</p>
+        <h1 class="hero__title">
+          食不厌精<br />
+          <em>脍不厌细</em>
+        </h1>
+        <p class="hero__lead">
+          鲁菜之根在济南。清汤吊足八小时,奶汤熬到乳白,爆炒只争三秒——
+          我们守着这口老灶,把三千年的鲁味端上桌。
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="#booking">预订餐位</a>
+          <a class="btn btn--ghost" href="#menu">看看招牌菜<span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <dl class="hero__stats">
+          <div class="stat">
+            <dt>开灶年限</dt>
+            <dd><span data-count="28">0</span><span class="stat__unit">年</span></dd>
+          </div>
+          <div class="stat">
+            <dt>每日吊汤</dt>
+            <dd><span data-count="8">0</span><span class="stat__unit">小时</span></dd>
+          </div>
+          <div class="stat">
+            <dt>食客好评率</dt>
+            <dd><span data-count="98">0</span><span class="stat__unit">%</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero__visual">
+        <figure class="hero__plate">
+          <img src="assets/img/hero-haishen.svg" width="960" height="720"
+               alt="镇店之宝葱烧海参:胶东刺参配章丘大葱,浓汁挂身" fetchpriority="high" />
+          <figcaption class="hero__badge">
+            <span class="hero__badge-label">镇店之宝</span>
+            <strong>葱烧海参</strong>
+            <span class="hero__badge-meta">胶东刺参 · 发足三天 · ¥288</span>
+          </figcaption>
+        </figure>
+
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 140 140" class="seal__ring">
+            <defs>
+              <path id="sealPath" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0" />
+            </defs>
+            <text><textPath href="#sealPath" startOffset="0">鲁菜 · 咸鲜为本 · 清汤奶汤 · 火候为魂 ·</textPath></text>
+          </svg>
+          <span class="seal__center">鲁</span>
+        </div>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#about" aria-label="向下浏览">
+      <span class="hero__scroll-line"></span>往下看
+    </a>
+  </section>
+
+  <!-- ============ 滚动条幅 ============ -->
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>清汤吊八小时</span><span>·</span><span>奶汤熬到乳白</span><span>·</span>
+      <span>爆炒只争三秒</span><span>·</span><span>章丘大葱</span><span>·</span>
+      <span>胶东直送海鲜</span><span>·</span><span>零预制菜</span><span>·</span>
+      <span>清汤吊八小时</span><span>·</span><span>奶汤熬到乳白</span><span>·</span>
+      <span>爆炒只争三秒</span><span>·</span><span>章丘大葱</span><span>·</span>
+      <span>胶东直送海鲜</span><span>·</span><span>零预制菜</span><span>·</span>
+    </div>
+  </section>
+
+  <!-- ============ 关于 ============ -->
+  <section class="section about" id="about">
+    <div class="shell about__inner">
+      <div class="about__media reveal">
+        <figure class="frame frame--tall">
+          <img src="assets/img/env-tea.svg" width="960" height="640" alt="店里的茶席:一壶茶、两只杯,窗外是老街的灯" loading="lazy" decoding="async" />
+          <figcaption>进门先奉一盏茶 · 茉莉大方</figcaption>
+        </figure>
+        <figure class="frame frame--small">
+          <img src="assets/img/env-kitchen.svg" width="960" height="640" alt="明档厨房里的一口炒锅与炉火" loading="lazy" decoding="async" />
+          <figcaption>明档厨房 · 火不熄</figcaption>
+        </figure>
+        <div class="about__badge" aria-hidden="true">
+          <strong>28</strong>
+          <span>年<br />开灶</span>
+        </div>
+      </div>
+
+      <div class="about__copy reveal">
+        <p class="eyebrow"><span class="eyebrow__line"></span>关于鲁香居</p>
+        <h2 class="section__title">鲁菜不花哨<br />它只是不肯省事</h2>
+        <p>
+          鲁香居开在芙蓉街的一条老巷里,只有 14 张桌子。老板姓周,章丘人,
+          十六岁起在大明湖边的馆子学灶。他说鲁菜没别的诀窍——
+          <strong>「该吊八小时的汤,就不能只吊五个小时。」</strong>
+        </p>
+        <p>
+          所以我们的清汤要用老母鸡、猪骨、火腿吊到澄澈见底;奶汤要熬到乳白挂勺;
+          九转大肠要套洗七遍、先炸后烧;连一碟甜面酱都是自己晒的。
+          菜单跟着黄河走:春有蒲菜,夏有对虾,秋有鲤鱼,冬有把子肉。
+        </p>
+
+        <ul class="about__points">
+          <li>
+            <span class="about__points-icon" aria-hidden="true">汤</span>
+            <div><strong>吊汤八小时</strong><p>清汤见底、奶汤挂勺,一天一锅,卖完为止。</p></div>
+          </li>
+          <li>
+            <span class="about__points-icon" aria-hidden="true">爆</span>
+            <div><strong>爆炒三秒</strong><p>八成油温,十五秒出锅,脆嫩全靠手上功夫。</p></div>
+          </li>
+          <li>
+            <span class="about__points-icon" aria-hidden="true">鲜</span>
+            <div><strong>零预制</strong><p>门店现炒现烧,厨房全开放,看得见火候。</p></div>
+          </li>
+        </ul>
+
+        <a class="link-arrow" href="#gallery">走进店里看看<span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 招牌菜单 ============ -->
+  <section class="section section--dark menu" id="menu">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow"><span class="eyebrow__line"></span>招牌菜单</p>
+        <h2 class="section__title">一菜一格 · 百菜百味</h2>
+        <p class="section__sub">
+          菜单随黄河与时令调整,以下为当季在售。九转大肠、葱烧海参等需提前预留。
+        </p>
+      </header>
+
+      <div class="menu__tabs reveal" role="group" aria-label="菜品分类筛选">
+        <button class="tab is-active" type="button" aria-pressed="true" data-filter="all">全部</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="cold">凉菜</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="hot">热菜</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="sea">海鲜河鲜</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="soup">汤羹</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="staple">主食</button>
+        <button class="tab" type="button" aria-pressed="false" data-filter="sweet">甜品</button>
+      </div>
+
+      <div class="menu__grid reveal" id="menuGrid">
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-jiuzhuandachang.svg" width="960" height="720"
+                 alt="九转大肠:盘中的红亮大肠段,淋着浓汁,撒香菜与芝麻" loading="lazy" decoding="async" />
+            <span class="dish__tag dish__tag--signature">招牌</span>
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>九转大肠</h3><span class="dish__price">¥88</span></div>
+            <p>大肠套洗七遍,先炸后烧,酸甜香辣咸五味俱全,起锅前淋一勺九转汁。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">猪大肠中段 400g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">香菜段</li>
+                <li class="chip">葱花</li>
+                <li class="chip">姜末</li>
+                <li class="chip">蒜末</li>
+                <li class="chip">熟白芝麻</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">冰糖、香醋、酱油、花椒油、肉桂、砂仁</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>套洗七遍 → 焯水 → 过油 → 慢火烧透</dd></div>
+              <div><dt>口味</dt><dd>酸甜香辣咸,五味俱全</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">现做约 25 分钟,建议订座时预留;大肠属内脏,忌口请提前说明。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「九转大肠」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-congshaohaishen.svg" width="960" height="720"
+                 alt="葱烧海参:深色刺参配金黄葱段,浓汁油亮" loading="lazy" decoding="async" />
+            <span class="dish__tag dish__tag--signature">镇店</span>
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>葱烧海参</h3><span class="dish__price">¥288</span></div>
+            <p>胶东刺参发足三天,章丘大葱煸至金黄,浓汁挂身,葱香压得住海味。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">胶东刺参 80g(干参,发足三天)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">章丘大葱葱白 200g</li>
+                <li class="chip">姜片</li>
+                <li class="chip">油菜心</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">高汤、酱油、糖色、料酒、花椒油</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>发制三天 → 大葱煸至金黄 → 扒烧收汁</dd></div>
+              <div><dt>口味</dt><dd>咸鲜醇厚,葱香压住海味</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">需提前 1 天预订,每日限量 8 份。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「葱烧海参」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-baochaoyaohua.svg" width="960" height="720"
+                 alt="爆炒腰花:麦穗花刀的腰块与木耳、黄瓜片同炒" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>爆炒腰花</h3><span class="dish__price">¥78</span></div>
+            <p>猪腰改麦穗花刀,油温八成,十五秒出锅,脆嫩不腥,配木耳黄瓜。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">鲜猪腰 2 副</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">水发木耳</li>
+                <li class="chip">黄瓜片</li>
+                <li class="chip">笋片</li>
+                <li class="chip">蒜片</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">香醋、料酒、盐、白胡椒、湿淀粉</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>麦穗花刀 → 八成油温 → 十五秒出锅</dd></div>
+              <div><dt>口味</dt><dd>咸鲜脆嫩,回味微酸</dd></div>
+              <div><dt>分量</dt><dd>2 人</dd></div>
+            </dl>
+            <p class="detail-tip">讲究出锅即食,不建议打包。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「爆炒腰花」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-dezhoubaji.svg" width="960" height="720"
+                 alt="德州扒鸡:整只金黄扒鸡卧在盘中,造型完整" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>德州扒鸡</h3><span class="dish__price">¥98</span></div>
+            <p>老汤焖足六小时,五香透骨,提起腿来骨肉自离,凉吃更香。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">本地小公鸡 1 只(约 1000g)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">老汤</li>
+                <li class="chip">葱段</li>
+                <li class="chip">姜块</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">八角、桂皮、丁香、草果、砂仁、饴糖、酱油</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>饴糖挂色 → 油炸 → 老汤焖六小时</dd></div>
+              <div><dt>口味</dt><dd>五香脱骨,咸鲜回甜</dd></div>
+              <div><dt>分量</dt><dd>2–4 人</dd></div>
+            </dl>
+            <p class="detail-tip">可整只或半只,凉吃更见香。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「德州扒鸡」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-bazirou.svg" width="960" height="720"
+                 alt="把子肉:蒲草捆扎的五花肉厚片,酱色油亮" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>把子肉</h3><span class="dish__price">¥48</span></div>
+            <p>五花三层切厚片,蒲草捆扎,老汤浸足两小时,肥而不腻,配米饭一绝。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">带皮五花三层猪肉 500g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">葱段</li>
+                <li class="chip">姜片</li>
+                <li class="chip">干辣椒</li>
+                <li class="chip">蒲草(捆扎)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">老汤、冰糖、酱油、八角、香叶</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>蒲草捆扎 → 老汤浸足两小时</dd></div>
+              <div><dt>口味</dt><dd>酱香浓郁,肥而不腻</dd></div>
+              <div><dt>分量</dt><dd>2 人</dd></div>
+            </dl>
+            <p class="detail-tip">配一碗米饭最佳,米饭单点 ¥3。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「把子肉」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="hot">
+          <div class="dish__media">
+            <img src="assets/img/dish-sixiwanzi.svg" width="960" height="720"
+                 alt="四喜丸子:四只硕大肉丸配青菜,浇上红亮酱汁" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>四喜丸子</h3><span class="dish__price">¥68</span></div>
+            <p>前腿肉手工细切粗斩,炸至定型再入汤慢煨,青菜垫底,肉香扎实。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">猪前腿肉 500g(细切粗斩)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">荸荠</li>
+                <li class="chip">香菇</li>
+                <li class="chip">油菜心</li>
+                <li class="chip">葱姜末</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">鸡蛋、淀粉、酱油、高汤</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>手打上劲 → 油炸定型 → 汤中慢煨</dd></div>
+              <div><dt>口味</dt><dd>咸鲜软糯</dd></div>
+              <div><dt>分量</dt><dd>4 只 / 2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">四只一份,取福禄寿喜之意。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「四喜丸子」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="sea">
+          <div class="dish__media">
+            <img src="assets/img/dish-tangculiyu.svg" width="960" height="720"
+                 alt="糖醋黄河鲤鱼:整条金黄鲤鱼改花刀,浇上糖醋亮汁" loading="lazy" decoding="async" />
+            <span class="dish__tag dish__tag--season">本季主推</span>
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>糖醋黄河鲤鱼</h3><span class="dish__price">¥138</span></div>
+            <p>黄河鲤鱼两面改花刀,两次过油定型,糖醋汁趁热浇上,听得见响。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">黄河鲤鱼 1 条(约 1000g)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">葱姜蒜末</li>
+                <li class="chip">青红椒丝</li>
+                <li class="chip">香菜</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">洛口醋、白糖、番茄酱、湿淀粉</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>两面花刀 → 两次过油 → 糖醋汁趁热浇</dd></div>
+              <div><dt>口味</dt><dd>外酥里嫩,酸甜开胃</dd></div>
+              <div><dt>分量</dt><dd>3–4 人</dd></div>
+            </dl>
+            <p class="detail-tip">现炸现浇汁,建议堂食,打包会回软。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「糖醋黄河鲤鱼」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="sea">
+          <div class="dish__media">
+            <img src="assets/img/dish-youmendaxia.svg" width="960" height="720"
+                 alt="油焖大虾:六只红亮的对虾呈风车状摆盘" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>油焖大虾</h3><span class="dish__price">¥128</span></div>
+            <p>胶东对虾剪须开背,虾油煸出红油,收汁亮壳,连壳都想嚼下去。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">胶东对虾 8 只(约 500g)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">葱段</li>
+                <li class="chip">姜片</li>
+                <li class="chip">香菜</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">虾油、番茄酱、白糖、料酒</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>剪须开背 → 虾油煸红 → 大火收汁亮壳</dd></div>
+              <div><dt>口味</dt><dd>咸甜,虾香浓厚</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">按当日到货供应,数量有限,售完即止。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「油焖大虾」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="soup">
+          <div class="dish__media">
+            <img src="assets/img/dish-naitangpucai.svg" width="960" height="720"
+                 alt="奶汤蒲菜:乳白汤中浮着嫩白蒲菜段与火腿丝" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>奶汤蒲菜</h3><span class="dish__price">¥68</span></div>
+            <p>老母鸡与猪骨吊足六小时至乳白,配大明湖蒲菜嫩芯,清甜回甘。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">大明湖蒲菜嫩芯 300g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">火腿丝</li>
+                <li class="chip">水发木耳</li>
+                <li class="chip">葱姜</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">奶汤(老母鸡与猪骨吊足六小时)</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>吊奶汤至乳白 → 蒲菜断生即出</dd></div>
+              <div><dt>口味</dt><dd>清鲜,汤白味醇</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">蒲菜以 4–6 月最嫩,过季会换成当令时蔬。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「奶汤蒲菜」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="cold">
+          <div class="dish__media">
+            <img src="assets/img/dish-wuxiangxunyu.svg" width="960" height="720"
+                 alt="五香熏鱼:深琥珀色的熏鱼块,撒上葱丝与芝麻" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>五香熏鱼</h3><span class="dish__price">¥58</span></div>
+            <p>草鱼切段腌足一夜,先炸后熏,甜咸入骨,冷吃最见功夫。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">草鱼中段 500g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">葱丝</li>
+                <li class="chip">姜丝</li>
+                <li class="chip">熟芝麻</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">五香粉、酱油、冰糖、花雕、茶叶与红糖(熏料)</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>腌足一夜 → 先炸后熏</dd></div>
+              <div><dt>口味</dt><dd>甜咸入骨,冷吃更香</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">凉菜提前备好,售完需等次日。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「五香熏鱼」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="cold">
+          <div class="dish__media">
+            <img src="assets/img/dish-jiangniurou.svg" width="960" height="720"
+                 alt="鲁味酱牛肉:扇形排开的酱色牛肉薄片,可见纹理" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>鲁味酱牛肉</h3><span class="dish__price">¥68</span></div>
+            <p>牛腱冷水下锅,十余味香料酱足三小时,切片见纹,蘸蒜泥更香。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">牛腱子 500g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">蒜泥</li>
+                <li class="chip">香菜</li>
+                <li class="chip">葱丝</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">十余味香料、酱油、黄酱、冰糖</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>冷水下锅 → 酱足三小时 → 冷却切片</dd></div>
+              <div><dt>口味</dt><dd>酱香紧实,切片见纹</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">配蒜泥或辣油碟,也可加钱做成冷拼。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「鲁味酱牛肉」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="staple">
+          <div class="dish__media">
+            <img src="assets/img/dish-shandongjianbing.svg" width="960" height="720"
+                 alt="山东大煎饼:木板上叠着金黄的煎饼卷,旁边是章丘大葱与甜面酱" loading="lazy" decoding="async" />
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>山东大煎饼</h3><span class="dish__price">¥18</span></div>
+            <p>杂粮石磨糊摊薄,叠成卷,配章丘大葱与自晒甜面酱,越嚼越甜。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">杂粮糊(小米、玉米、黄豆石磨)</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">章丘大葱</li>
+                <li class="chip">咸菜丝</li>
+                <li class="chip">自晒甜面酱</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">甜面酱</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>石磨磨糊 → 鏊子摊薄 → 叠卷上桌</dd></div>
+              <div><dt>口味</dt><dd>谷物本香,越嚼越甜</dd></div>
+              <div><dt>分量</dt><dd>1–2 人</dd></div>
+            </dl>
+            <p class="detail-tip">大葱与甜面酱配齐才是正经吃法,可续酱。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「山东大煎饼」的主料与配菜"></button>
+        </article>
+
+        <article class="dish" data-category="sweet">
+          <div class="dish__media">
+            <img src="assets/img/dish-basishanyao.svg" width="960" height="720"
+                 alt="拔丝山药:金黄山药块之间拉着琥珀色的糖丝" loading="lazy" decoding="async" />
+            <span class="dish__tag dish__tag--hot">趁热吃</span>
+          </div>
+          <div class="dish__body">
+            <div class="dish__head"><h3>拔丝山药</h3><span class="dish__price">¥42</span></div>
+            <p>山药滚刀块挂脆浆,糖色熬到能拉丝,蘸一下凉水,外壳更脆。</p>
+          </div>
+          <div class="dish__detail" hidden>
+            <div class="detail-group">
+              <h4>主料</h4>
+              <ul class="chips">
+                <li class="chip chip--main">铁棍山药 400g</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>配菜</h4>
+              <ul class="chips">
+                <li class="chip">熟白芝麻</li>
+                <li class="chip">凉水一碗</li>
+              </ul>
+            </div>
+            <div class="detail-group">
+              <h4>调料</h4>
+              <p class="detail-text">白糖、植物油</p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>技法</dt><dd>挂脆浆 → 油炸 → 熬糖色至能拉丝</dd></div>
+              <div><dt>口味</dt><dd>外脆内糯,甜</dd></div>
+              <div><dt>分量</dt><dd>2–3 人</dd></div>
+            </dl>
+            <p class="detail-tip">上桌即食,蘸一下凉水外壳更脆。</p>
+          </div>
+          <button class="dish__hit" type="button" aria-label="查看「拔丝山药」的主料与配菜"></button>
+        </article>
+
+      </div>
+
+      <p class="menu__note reveal">
+        <span aria-hidden="true">※</span> 全部菜品门店现做,出餐约 15 分钟;如有忌口请提前告知。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 灶上功夫 ============ -->
+  <section class="section craft" id="craft">
+    <div class="shell">
+      <header class="section__head section__head--center reveal">
+        <p class="eyebrow eyebrow--center"><span class="eyebrow__line"></span>灶上功夫<span class="eyebrow__line"></span></p>
+        <h2 class="section__title">鲁菜的四个字</h2>
+        <p class="section__sub">同样是火,用法不同,味道就不同。</p>
+      </header>
+
+      <ol class="craft__list reveal">
+        <li>
+          <span class="craft__num" aria-hidden="true">01</span>
+          <h3>吊</h3>
+          <p>老母鸡、猪骨、火腿冷水下锅,小火吊八小时,撇净浮沫,汤清得能照见碗底。</p>
+        </li>
+        <li>
+          <span class="craft__num" aria-hidden="true">02</span>
+          <h3>爆</h3>
+          <p>八成油温,十五秒出锅。腰花、肚仁、鸡胗,靠的全是一瞬间的脆。</p>
+        </li>
+        <li>
+          <span class="craft__num" aria-hidden="true">03</span>
+          <h3>扒</h3>
+          <p>整料下锅,大翻勺不散形,汁要收到恰好挂住,海参、鱼肚最考这一手。</p>
+        </li>
+        <li>
+          <span class="craft__num" aria-hidden="true">04</span>
+          <h3>烧</h3>
+          <p>先炸后烧,糖色上得透。九转大肠的七道味,全靠这一锅慢慢煨出来。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 店内环境 ============ -->
+  <section class="section gallery" id="gallery">
+    <div class="shell">
+      <header class="section__head section__head--center reveal">
+        <p class="eyebrow eyebrow--center"><span class="eyebrow__line"></span>店内<span class="eyebrow__line"></span></p>
+        <h2 class="section__title">十四张桌子,一间老屋</h2>
+        <p class="section__sub">青砖墙、木格窗、一口天井。老宅原样留着,只添了几盏暖灯。</p>
+      </header>
+
+      <div class="gallery__grid reveal">
+        <figure class="tile tile--kitchen">
+          <img src="assets/img/env-kitchen.svg" width="960" height="640" alt="明档厨房:炉火正旺的炒锅与挂着的铁锅" loading="lazy" decoding="async" />
+          <figcaption><strong>明档厨房</strong>看得见的每一道火候</figcaption>
+        </figure>
+        <figure class="tile tile--hall">
+          <img src="assets/img/env-hall.svg" width="960" height="640" alt="堂食大间:两张八仙桌与三盏红灯笼" loading="lazy" decoding="async" />
+          <figcaption><strong>堂食大间</strong>14 桌 · 42 座</figcaption>
+        </figure>
+        <figure class="tile tile--courtyard">
+          <img src="assets/img/env-courtyard.svg" width="960" height="640" alt="老宅天井:青砖墙、木格窗、一灯笼与一轮月" loading="lazy" decoding="async" />
+          <figcaption><strong>老宅天井</strong>等位时看一会儿月亮</figcaption>
+        </figure>
+        <figure class="tile tile--tea">
+          <img src="assets/img/env-tea.svg" width="960" height="640" alt="茶席:木桌上的茶壶与两只茶杯" loading="lazy" decoding="async" />
+          <figcaption><strong>茶席</strong>餐前的一壶茉莉大方</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 食客说 ============ -->
+  <section class="section section--tint voices" id="voices">
+    <div class="shell">
+      <header class="section__head section__head--center reveal">
+        <p class="eyebrow eyebrow--center"><span class="eyebrow__line"></span>食客说<span class="eyebrow__line"></span></p>
+        <h2 class="section__title">他们这样评价鲁香居</h2>
+      </header>
+
+      <div class="slider reveal" id="slider">
+        <ul class="slider__track" id="sliderTrack">
+          <li class="quote">
+            <p class="quote__stars" aria-label="五星好评">★★★★★</p>
+            <blockquote>九转大肠是真的会让人沉默三秒的那种,酸甜咸辣一层层出来。老板还送了碗自制甜沫。</blockquote>
+            <footer><strong>林女士</strong><span>大众点评 · 2026.08</span></footer>
+          </li>
+          <li class="quote">
+            <p class="quote__stars" aria-label="五星好评">★★★★★</p>
+            <blockquote>葱烧海参一份两百多不便宜,但发得透、葱香足,完全不是拿芡汁糊弄人的做法。值。</blockquote>
+            <footer><strong>陈先生</strong><span>本地食客 · 2026.07</span></footer>
+          </li>
+          <li class="quote">
+            <p class="quote__stars" aria-label="五星好评">★★★★★</p>
+            <blockquote>带外地朋友来吃鲁菜,点了糖醋鲤鱼和爆炒腰花,朋友说吃到了「教科书级别的火候」。</blockquote>
+            <footer><strong>周女士</strong><span>小红书 · 2026.06</span></footer>
+          </li>
+        </ul>
+
+        <div class="slider__controls">
+          <button class="circle-btn" type="button" id="prevSlide" aria-label="上一条评价">←</button>
+          <div class="slider__dots" id="sliderDots"></div>
+          <button class="circle-btn" type="button" id="nextSlide" aria-label="下一条评价">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 订座 ============ -->
+  <section class="section booking" id="booking">
+    <div class="shell booking__inner">
+      <div class="booking__info reveal">
+        <p class="eyebrow"><span class="eyebrow__line"></span>订座</p>
+        <h2 class="section__title">留张桌子<br />给你和想见的人</h2>
+        <p class="booking__lead">
+          小馆只有 14 桌,周五至周日建议提前 1 天预订。
+          电话订座最快,线上留言我们会在 30 分钟内回电确认。
+        </p>
+
+        <ul class="info-list">
+          <li>
+            <span class="info-list__icon" aria-hidden="true">时</span>
+            <div>
+              <strong>营业时间</strong>
+              <p>午市 11:00 – 14:00<br />晚市 17:00 – 21:30(周一午市休)</p>
+            </div>
+          </li>
+          <li>
+            <span class="info-list__icon" aria-hidden="true">址</span>
+            <div>
+              <strong>门店地址</strong>
+              <p>济南市历下区芙蓉街 128 号(近府学文庙)<br />步行 3 分钟可达大明湖西南门</p>
+            </div>
+          </li>
+          <li>
+            <span class="info-list__icon" aria-hidden="true">电</span>
+            <div>
+              <strong>订座 / 咨询</strong>
+              <p><a href="tel:+8653186198866">0531-8619 8866</a><br />微信同号 138 0000 8866</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="booking__card reveal">
+        <form class="booking-form" id="bookingForm" novalidate>
+          <h3 class="booking-form__title">在线订座</h3>
+          <p class="booking-form__hint">带 <span aria-hidden="true">*</span> 为必填项</p>
+
+          <div class="field">
+            <label for="bkName">称呼 <span aria-hidden="true">*</span></label>
+            <input id="bkName" name="name" type="text" autocomplete="name" placeholder="例如:张先生" required />
+            <p class="field__error" data-error-for="bkName"></p>
+          </div>
+
+          <div class="field">
+            <label for="bkPhone">手机号 <span aria-hidden="true">*</span></label>
+            <input id="bkPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="用于回电确认" required />
+            <p class="field__error" data-error-for="bkPhone"></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bkDate">用餐日期 <span aria-hidden="true">*</span></label>
+              <input id="bkDate" name="date" type="date" required />
+              <p class="field__error" data-error-for="bkDate"></p>
+            </div>
+            <div class="field">
+              <label for="bkTime">用餐时段 <span aria-hidden="true">*</span></label>
+              <select id="bkTime" name="time" required>
+                <option value="">请选择</option>
+                <option>午市 11:00</option>
+                <option>午市 12:00</option>
+                <option>午市 13:00</option>
+                <option>晚市 17:00</option>
+                <option>晚市 18:00</option>
+                <option>晚市 19:00</option>
+                <option>晚市 20:00</option>
+              </select>
+              <p class="field__error" data-error-for="bkTime"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="bkPeople">用餐人数 <span aria-hidden="true">*</span></label>
+            <select id="bkPeople" name="people" required>
+              <option value="">请选择</option>
+              <option>1 人</option>
+              <option>2 人</option>
+              <option>3 – 4 人</option>
+              <option>5 – 6 人</option>
+              <option>7 人以上(需电话沟通)</option>
+            </select>
+            <p class="field__error" data-error-for="bkPeople"></p>
+          </div>
+
+          <div class="field">
+            <label for="bkNote">备注 <span class="field__optional">选填</span></label>
+            <textarea id="bkNote" name="note" rows="3" placeholder="忌口、想要九转大肠或葱烧海参、生日惊喜……"></textarea>
+          </div>
+
+          <label class="checkbox">
+            <input id="bkAgree" name="agree" type="checkbox" required />
+            <span>我已阅读并同意门店在订座确认时通过电话联系我。</span>
+          </label>
+          <p class="field__error" data-error-for="bkAgree"></p>
+
+          <button class="btn btn--solid btn--block" type="submit">提交订座申请</button>
+
+          <p class="booking-form__success" id="bookingSuccess" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <span class="brand__mark" aria-hidden="true">鲁</span>
+      <div>
+        <strong>鲁香居 LUXIANGJU</strong>
+        <p>手作鲁菜 · 济南芙蓉街</p>
+      </div>
+    </div>
+
+    <nav class="footer__nav" aria-label="页脚导航">
+      <div>
+        <h4>逛一逛</h4>
+        <ul>
+          <li><a href="#about">关于鲁香居</a></li>
+          <li><a href="#menu">招牌菜单</a></li>
+          <li><a href="#craft">灶上功夫</a></li>
+          <li><a href="#booking">在线订座</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系我们</h4>
+        <ul>
+          <li><a href="tel:+8653186198866">0531-8619 8866</a></li>
+          <li><a href="mailto:hello@luxiangju.example">hello@luxiangju.example</a></li>
+          <li>济南市历下区芙蓉街 128 号</li>
+        </ul>
+      </div>
+      <div>
+        <h4>营业时间</h4>
+        <ul>
+          <li>午市 11:00 – 14:00</li>
+          <li>晚市 17:00 – 21:30</li>
+          <li>周一午市休息</li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="shell footer__bottom">
+    <p>© <span id="year">2026</span> 鲁香居 LUXIANGJU. 本页为演示示例,菜品与门店信息均属虚构。</p>
+    <p class="footer__meta">插图由 tools/build-art.mjs 生成 · 济南</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+
+<!-- 菜品详情弹窗:内容由 JS 从各卡片里的 .dish__detail 填充 -->
+<dialog class="dish-dialog" id="dishDialog" aria-labelledby="dishDialogTitle">
+  <div class="dish-dialog__panel">
+    <button class="dish-dialog__close" id="dishDialogClose" type="button" aria-label="关闭菜品详情">✕</button>
+
+    <div class="dish-dialog__media">
+      <img id="dishDialogImg" src="assets/img/dish-jiuzhuandachang.svg" alt="" width="960" height="720" />
+      <span class="dish-dialog__tag" id="dishDialogTag" hidden></span>
+    </div>
+
+    <div class="dish-dialog__body">
+      <header class="dish-dialog__head">
+        <h3 id="dishDialogTitle">菜品详情</h3>
+        <span class="dish-dialog__price" id="dishDialogPrice"></span>
+      </header>
+      <p class="dish-dialog__desc" id="dishDialogDesc"></p>
+
+      <div class="dish-dialog__detail" id="dishDialogDetail"></div>
+
+      <footer class="dish-dialog__actions">
+        <a class="btn btn--solid" href="#booking" id="dishDialogBook">订座时预留这道菜</a>
+        <div class="dish-dialog__nav">
+          <button class="circle-btn" type="button" id="dishDialogPrev" aria-label="看上一道菜">←</button>
+          <span class="dish-dialog__count" id="dishDialogCount" aria-live="polite"></span>
+          <button class="circle-btn" type="button" id="dishDialogNext" aria-label="看下一道菜">→</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+</dialog>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

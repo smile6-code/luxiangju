@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><title>菜品照片选择</title>
+<style>
+  body{margin:0;padding:24px 24px 240px;background:#14100c;color:#e8ded0;font:14px/1.6 "Microsoft YaHei",sans-serif}
+  h1{font-size:20px;margin:0 0 6px}
+  .lead{color:#a89880;font-size:13px;margin-bottom:22px;max-width:76ch}
+  .dish{margin-bottom:26px;border-top:1px solid #2e2419;padding-top:16px}
+  h2{font-size:16px;margin:0 0 12px;font-weight:600}
+  h2 code{font-size:11px;color:#7d6c55;font-weight:400;margin-left:6px}
+  .tag{font-size:11px;font-weight:400;padding:3px 10px;border-radius:999px;margin-left:8px;vertical-align:2px;white-space:nowrap}
+  .tag--ok{background:rgba(123,162,79,.18);color:#a8c87a;border:1px solid rgba(123,162,79,.35)}
+  .tag--bad{background:rgba(224,104,74,.16);color:#e8927a;border:1px solid rgba(224,104,74,.4)}
+  .dish--bad{background:rgba(224,104,74,.05);border-radius:10px;padding:16px 14px 14px;margin-left:-14px;margin-right:-14px}
+  .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .pick{position:relative;display:block;border:1px solid #33281c;border-radius:10px;overflow:hidden;
+        background:#1d1610;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+  .pick:hover{border-color:#8a6a34}
+  .pick:has(input:checked){border-color:#d9a44c;box-shadow:0 0 0 2px rgba(217,164,76,.3)}
+  input{position:absolute;opacity:0;pointer-events:none}
+  .pick img{width:100%;height:150px;object-fit:cover;display:block;background:#000}
+  .meta{display:block;padding:7px 10px 9px;font-size:11px;color:#b8a68c;line-height:1.45}
+  .meta small{color:#7d6c55}
+  .pick--none{display:grid;place-items:center;height:150px;text-align:center;
+              font-size:12px;color:#8a7a62;border-style:dashed;background:#181209}
+  .ph small{color:#65583f}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(13,9,6,.95);
+       border-top:1px solid #3a2c1c;padding:12px 24px;backdrop-filter:blur(8px)}
+  textarea{width:100%;height:132px;background:#080605;color:#9f8;border:1px solid #33281c;
+           border-radius:8px;padding:10px;font:12px/1.5 Consolas,monospace;resize:vertical}
+  button{margin-top:8px;padding:8px 18px;border-radius:999px;border:0;cursor:pointer;
+         background:linear-gradient(135deg,#eec689,#d9a44c);color:#241505;font-weight:700}
+</style></head>
+<body>
+<h1>菜品照片选择</h1>
+<p class="lead">
+  每道菜下面是抓到的真实照片候选。<b>点一张即选中</b>,不想换就选「保留插画」。
+  选完把底部清单粘回对话,我按清单把图接进页面。<br />
+  候选来自公开网页搜索,版权请自行确认;要正式商用建议换成自己拍的或图库授权图。
+</p>
+
+  <section class="dish">
+    <h2>九转大肠 <code>dish-jiuzhuandachang</code>
+      <span class="tag tag--ok">6/6 条标题命中「大肠」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-jiuzhuandachang" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="1" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 51KB<br />
+        <small>九转大肠的12种做法，红润油亮肥而不腻，味道九转回荡不同凡响__财经头条</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="2" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · k.sinaimg.cn · 377KB<br />
+        <small>山东特色美食：九转大肠多种做法！|大肠|猪大肠|花椒油_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="3" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 86KB<br />
+        <small>山路尽头，九转大肠</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="4" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-4.png" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · n.sinaimg.cn · 796KB<br />
+        <small>造孽啊，拍出“九转大肠”的综艺整个都很荒唐！|大肠|小胖|选手_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="5" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · i2.chuimg.com · 112KB<br />
+        <small>【九转大肠的做法步骤图，九转大肠怎么做好吃】老饶家_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiuzhuandachang" value="6" />
+        <img src="../assets/img/candidates/dish-jiuzhuandachang/dish-jiuzhuandachang-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · pic.nximg.cn · 1140KB<br />
+        <small>九转大肠设计图__菜单菜谱_广告设计_设计图库_昵图网</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish dish--bad">
+    <h2>葱烧海参 <code>dish-congshaohaishen</code>
+      <span class="tag tag--bad">⚠ 候选标题里没有「海参」,基本是搜歪的</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-congshaohaishen" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="1" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 26KB<br />
+        <small>教你有关种植葱的几个小知识，葱对环境条件有哪些要求|蔬菜|栽培|光照_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="2" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · n.sinaimg.cn · 135KB<br />
+        <small>如何给盆栽细香葱施肥阳台盆栽香葱施肥的小技巧|细香葱|施肥|盆栽_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="3" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · pic.nximg.cn · 282KB<br />
+        <small>葱 小葱 香葱 蔬菜摄影图__蔬菜_生物世界_摄影图库_昵图网nipic.com</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="4" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · am.zdmimg.com · 199KB<br />
+        <small>大葱和小葱有什么区别，哪种味道香浓？_蔬菜_什么值得买</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="5" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · qnam.smzdm.com · 165KB<br />
+        <small>大葱和小葱有什么区别，哪种味道香浓？_蔬菜_什么值得买</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-congshaohaishen" value="6" />
+        <img src="../assets/img/candidates/dish-congshaohaishen/dish-congshaohaishen-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · ruida.org · 302KB<br />
+        <small>大葱、小葱、香葱、青葱等种类及营养价值和功效作用_瑞达网,华玉生活</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>糖醋黄河鲤鱼 <code>dish-tangculiyu</code>
+      <span class="tag tag--ok">5/5 条标题命中「鲤鱼」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-tangculiyu" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-tangculiyu" value="2" />
+        <img src="../assets/img/candidates/dish-tangculiyu/dish-tangculiyu-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · n.sinaimg.cn · 171KB<br />
+        <small>糖醋鲤鱼 济南传统名菜的精髓|鲤鱼|糖醋|济南_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-tangculiyu" value="3" />
+        <img src="../assets/img/candidates/dish-tangculiyu/dish-tangculiyu-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 62KB<br />
+        <small>美食品尝 I 春节家常菜：糖醋鲤鱼烹饪秘方|糖醋|家常菜|鲤鱼_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-tangculiyu" value="4" />
+        <img src="../assets/img/candidates/dish-tangculiyu/dish-tangculiyu-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · k.sinaimg.cn · 162KB<br />
+        <small>山东名菜糖醋鲤鱼，鲁菜当中的代表作，你知道它的来历吗？|鱼肉|美味|表面|盘子_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-tangculiyu" value="5" />
+        <img src="../assets/img/candidates/dish-tangculiyu/dish-tangculiyu-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · k.sinaimg.cn · 117KB<br />
+        <small>山东名菜糖醋鲤鱼，鲁菜当中的代表作，你知道它的来历吗？|鱼肉|美味|表面|盘子_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-tangculiyu" value="6" />
+        <img src="../assets/img/candidates/dish-tangculiyu/dish-tangculiyu-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · n.sinaimg.cn · 30KB<br />
+        <small>家常糖醋鲤鱼的做法及营养价值 饭店大厨都是这么做的|鲤鱼|糖醋|鱼_新浪新闻</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>爆炒腰花 <code>dish-baochaoyaohua</code>
+      <span class="tag tag--ok">3/3 条标题命中「腰花」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-baochaoyaohua" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-baochaoyaohua" value="1" />
+        <img src="../assets/img/candidates/dish-baochaoyaohua/dish-baochaoyaohua-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 146KB<br />
+        <small>四川火爆腰花的家常做法，鲜香嫩滑味道一流，不腥不柴下饭超过瘾|泡椒|辣椒|花椒|美食|青花椒_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-baochaoyaohua" value="3" />
+        <img src="../assets/img/candidates/dish-baochaoyaohua/dish-baochaoyaohua-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · x0.ifengimg.com · 232KB<br />
+        <small>论一道爆炒腰花的自我修养_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-baochaoyaohua" value="6" />
+        <img src="../assets/img/candidates/dish-baochaoyaohua/dish-baochaoyaohua-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · n.sinaimg.cn · 136KB<br />
+        <small>教你做火爆腰花，咸鲜香辣，开胃下饭，吃了还想吃|猪腰|烹饪_新浪新闻</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>德州扒鸡 <code>dish-dezhoubaji</code>
+      <span class="tag tag--ok">6/6 条标题命中「扒鸡」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-dezhoubaji" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="1" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 114KB<br />
+        <small>风靡全国的德州扒鸡，传承几千年的美食文化，却拥有着这样的传说__财经头条</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="2" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · k.sinaimg.cn · 386KB<br />
+        <small>德州扒鸡那么好吃，那你真正了解过他吗？</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="3" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 76KB<br />
+        <small>山东传统名吃，天下第一鸡——德州扒鸡|名吃|五香|德州扒鸡_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="4" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · n.sinaimg.cn · 120KB<br />
+        <small>风靡全国的德州扒鸡，传承几千年的美食文化，却拥有着这样的传说</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="5" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · p1.ifengimg.com · 125KB<br />
+        <small>为什么坐火车必备一只德州扒鸡？这是北方鸡最后的倔强！_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-dezhoubaji" value="6" />
+        <img src="../assets/img/candidates/dish-dezhoubaji/dish-dezhoubaji-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · n.sinaimg.cn · 96KB<br />
+        <small>风靡全国的德州扒鸡，传承几千年的美食文化，却拥有着这样的传说__财经头条</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>把子肉 <code>dish-bazirou</code>
+      <span class="tag tag--ok">✓ 1 张菜谱页成品图(标题已核对)</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-bazirou" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="R1" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-recipe-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>成品图 1</b>
+        · home.meishichina.com · 101KB<br />
+        <small>把子肉的做法_把子肉怎么做_君梦深蓝的菜谱_美食天下</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="1" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-1.png" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 1857KB<br />
+        <small>把子肉的做法，瘦而不柴肥而不腻入口醇香，连肉带汁2块起步|把子|起步|入口_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="2" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · n.sinaimg.cn · 465KB<br />
+        <small>把子肉的做法，瘦而不柴肥而不腻入口醇香，连肉带汁2块起步|把子|起步|入口_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="3" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 25KB<br />
+        <small>徐州正宗把子肉的做法，正宗徐州把子肉怎么做好吃|把子|配菜|徐州|素鸡|肉片_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="4" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · n.sinaimg.cn · 20KB<br />
+        <small>老济南正宗把子肉做法，你值得尝试|把子|草果|小姐姐|五花肉|小茴香_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="5" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · n.sinaimg.cn · 163KB<br />
+        <small>先马后看！济南名吃，家庭版把子肉学习起来，简单又好吃！|先马|好吃|把子肉_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-bazirou" value="6" />
+        <img src="../assets/img/candidates/dish-bazirou/dish-bazirou-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · n.sinaimg.cn · 1694KB<br />
+        <small>济南把子肉有不辣和辣的，当地人默认是选哪种？</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish dish--bad">
+    <h2>四喜丸子 <code>dish-sixiwanzi</code>
+      <span class="tag tag--bad">⚠ 候选标题里没有「丸子」,基本是搜歪的</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-sixiwanzi" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="1" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · k.sinaimg.cn · 142KB<br />
+        <small>常见阀门的分类及用途|减压阀|介质|节流阀|出口压力|安全阀_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="2" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · n.sinaimg.cn · 39KB<br />
+        <small>台风、严寒、腐蚀、雷暴……且看海上风力机如何“渡劫”！|风力机|叶片|台风|风电场|机舱_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="3" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 28KB<br />
+        <small>少羽牛逼。火影忍者手游 少羽 魔怔 春日野穹_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="4" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · n.sinaimg.cn · 14KB<br />
+        <small>高考加油，《少羽》为你助力，一起冲刺未来，上无数学子同你并肩作战|高考加油|高考_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="5" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · n.sinaimg.cn · 43KB<br />
+        <small>和平精英：人气主播少羽再夺双排榜首，六连冠成绩无人超越|主播|电竞_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-sixiwanzi" value="6" />
+        <img src="../assets/img/candidates/dish-sixiwanzi/dish-sixiwanzi-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · hqfmjt.com · 76KB<br />
+        <small>蝶阀规格型号尺寸大全及规格表-上海湖泉阀门有限公司——专业生产各种电动阀门</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>油焖大虾 <code>dish-youmendaxia</code>
+      <span class="tag tag--ok">6/6 条标题命中「大虾」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-youmendaxia" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="1" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · cp1.douguo.com · 343KB<br />
+        <small>油焖大虾的做法_【图解】油焖大虾怎么做如何做好吃_油焖大虾家常做法大全_好姑娘爱烹饪_豆果美食</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="2" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · i2.chuimg.com · 90KB<br />
+        <small>【油焖大虾的做法步骤图，油焖大虾怎么做好吃】腾羽_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="3" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · i2.chuimg.com · 236KB<br />
+        <small>【油焖大虾的做法步骤图，油焖大虾怎么做好吃】豆帝煮Man_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="4" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · materials.cdn.bcebos.com · 265KB<br />
+        <small>分享六道美味家常菜：油焖大虾上榜，凉拌莴笋酸脆爽口开胃又下饭</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="5" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · i2.chuimg.com · 206KB<br />
+        <small>【油焖大虾｜家常版的做法步骤图，怎么做好吃】古典美人美食_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-youmendaxia" value="6" />
+        <img src="../assets/img/candidates/dish-youmendaxia/dish-youmendaxia-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · i2.chuimg.com · 79KB<br />
+        <small>【家庭版油焖大虾的做法步骤图，怎么做好吃】zhaonxue_下厨房</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>奶汤蒲菜 <code>dish-naitangpucai</code>
+      <span class="tag tag--ok">6/6 条标题命中「蒲菜」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-naitangpucai" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="1" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · k.sinaimg.cn · 116KB<br />
+        <small>四大菜系鲁菜之一：奶汤蒲菜的做法！_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="2" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · k.sinaimg.cn · 245KB<br />
+        <small>四大菜系鲁菜之一：奶汤蒲菜的做法！_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="3" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · k.sinaimg.cn · 66KB<br />
+        <small>四大菜系鲁菜之一：奶汤蒲菜的做法！_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="4" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · k.sinaimg.cn · 564KB<br />
+        <small>四大菜系鲁菜之一：奶汤蒲菜的做法！_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="5" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · d.ifengimg.com · 95KB<br />
+        <small>大明湖畔的名菜奶汤蒲菜，你吃过吗？_凤凰网视频_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-naitangpucai" value="6" />
+        <img src="../assets/img/candidates/dish-naitangpucai/dish-naitangpucai-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · n.sinaimg.cn · 24KB<br />
+        <small>四大菜系鲁菜之一：奶汤蒲菜的做法！|蒲菜|鲁菜|菜系|汤菜|四大_新浪新闻</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>五香熏鱼 <code>dish-wuxiangxunyu</code>
+      <span class="tag tag--ok">5/5 条标题命中「熏鱼」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-wuxiangxunyu" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-wuxiangxunyu" value="2" />
+        <img src="../assets/img/candidates/dish-wuxiangxunyu/dish-wuxiangxunyu-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · k.sinaimg.cn · 112KB<br />
+        <small>熏鱼是熏出来的吗？教你一道红烧熏鱼，美味正宗，吃出经典江南味</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-wuxiangxunyu" value="3" />
+        <img src="../assets/img/candidates/dish-wuxiangxunyu/dish-wuxiangxunyu-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · i2.chuimg.com · 88KB<br />
+        <small>【上海熏鱼的做法步骤图，上海熏鱼怎么做好吃】籽玉sh_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-wuxiangxunyu" value="4" />
+        <img src="../assets/img/candidates/dish-wuxiangxunyu/dish-wuxiangxunyu-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · ksv-video-picture.cdn.bcebos.com · 347KB<br />
+        <small>熏鱼最正宗的做法-百度经验</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-wuxiangxunyu" value="5" />
+        <img src="../assets/img/candidates/dish-wuxiangxunyu/dish-wuxiangxunyu-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · ksv-video-picture.cdn.bcebos.com · 73KB<br />
+        <small>家庭版上海熏鱼的做法-百度经验</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-wuxiangxunyu" value="6" />
+        <img src="../assets/img/candidates/dish-wuxiangxunyu/dish-wuxiangxunyu-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · shuomingshu.cn · 40KB<br />
+        <small>如何制作熏鱼（上海熏鱼的正宗做法，1分钟就学会，味道太好吃了，年夜饭必备！） | 说明书网</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish dish--bad">
+    <h2>鲁味酱牛肉 <code>dish-jiangniurou</code>
+      <span class="tag tag--bad">⚠ 候选标题里没有「牛肉」,基本是搜歪的</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-jiangniurou" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="1" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · k.sinaimg.cn · 156KB<br />
+        <small>舌像合集：看完这10种舌头，你知道自己是哪种了吗？（建议收藏）|疾病|姜半夏|凤凰衣|阴虚|诊法_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="2" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · x0.ifengimg.com · 85KB<br />
+        <small>人形机器人：线性关节四大核心零部件，产业格局全梳理</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="3" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 19KB<br />
+        <small>揭秘与中国关系极好的“少年”国家——东帝汶|东帝汶|关系|少年_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="4" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · x0.ifengimg.com · 24KB<br />
+        <small>东帝汶：亚洲最年轻的国家，是如何从印尼获得独立的？_凤凰网历史_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="5" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · n.sinaimg.cn · 43KB<br />
+        <small>东盟接纳东帝汶为第11个成员国，区域合作深化|东盟|东南亚_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-jiangniurou" value="6" />
+        <img src="../assets/img/candidates/dish-jiangniurou/dish-jiangniurou-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · magicpic-p.cdn.bcebos.com · 62KB<br />
+        <small>中医舌象图解大全 | 百度健康·医学科普</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish">
+    <h2>山东大煎饼 <code>dish-shandongjianbing</code>
+      <span class="tag tag--ok">6/6 条标题命中「煎饼」</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-shandongjianbing" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="1" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · n.sinaimg.cn · 68KB<br />
+        <small>圆子教你煎饼的15种做法，松软可口膨松饱满，吃起来很精道</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="2" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · n.sinaimg.cn · 70KB<br />
+        <small>煎饼做好这1步，冷了也一样柔软！做法超简单，香喷喷，特好吃！</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="3" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · n.sinaimg.cn · 1465KB<br />
+        <small>胖子煎饼|煎饼|脆饼|胖子_新浪新闻</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="4" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · x0.ifengimg.com · 326KB<br />
+        <small>碳水内卷之王，中国煎饼究竟有多豪横？_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="5" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · d.ifengimg.com · 251KB<br />
+        <small>摊煎饼好吃有诀窍，下锅前多一个步骤，柔软透亮有韧性，太过瘾了_凤凰网视频_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-shandongjianbing" value="6" />
+        <img src="../assets/img/candidates/dish-shandongjianbing/dish-shandongjianbing-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · i2.chuimg.com · 131KB<br />
+        <small>【煎饼果子的做法步骤图，煎饼果子怎么做好吃】萱妈小厨房01_下厨房</small></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="dish dish--bad">
+    <h2>拔丝山药 <code>dish-basishanyao</code>
+      <span class="tag tag--bad">⚠ 候选标题里没有「山药」,基本是搜歪的</span>
+    </h2>
+    <div class="row">
+      <label class="pick pick--none">
+        <input type="radio" name="dish-basishanyao" value="0" checked />
+        <span class="ph">不用候选<br /><small>保留插画</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="1" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-1.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 1</b>
+        · k.sinaimg.cn · 86KB<br />
+        <small>拔丝地瓜、拔丝香蕉、拔丝苹果详细做法及4大秘诀</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="2" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-2.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 2</b>
+        · k.sinaimg.cn · 236KB<br />
+        <small>拔丝菜谱小技巧，轻松拔出长长的丝</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="3" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-3.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 3</b>
+        · p0.ifengimg.com · 94KB<br />
+        <small>在东北，拔丝地瓜是一门玄学_凤凰网</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="4" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-4.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 4</b>
+        · i2.chuimg.com · 73KB<br />
+        <small>【拔丝地瓜的做法视频_拔丝地瓜的做法步骤】_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="5" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-5.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 5</b>
+        · i2.chuimg.com · 165KB<br />
+        <small>【拔丝地瓜￨超拔丝的做法步骤图，怎么做好吃】悠悠食记_下厨房</small></span>
+      </label>
+      <label class="pick">
+        <input type="radio" name="dish-basishanyao" value="6" />
+        <img src="../assets/img/candidates/dish-basishanyao/dish-basishanyao-6.jpg" alt="" loading="lazy" />
+        <span class="meta"><b>图搜 6</b>
+        · i2.chuimg.com · 96KB<br />
+        <small>【拔丝地瓜的做法步骤图，拔丝地瓜怎么做好吃】香菜4_下厨房</small></span>
+      </label>
+    </div>
+  </section>
+<div class="bar">
+  <textarea id="out" readonly></textarea>
+  <button id="copy">复制清单</button>
+</div>
+<script>
+var IDS = [["dish-jiuzhuandachang","九转大肠"],["dish-congshaohaishen","葱烧海参"],["dish-tangculiyu","糖醋黄河鲤鱼"],["dish-baochaoyaohua","爆炒腰花"],["dish-dezhoubaji","德州扒鸡"],["dish-bazirou","把子肉"],["dish-sixiwanzi","四喜丸子"],["dish-youmendaxia","油焖大虾"],["dish-naitangpucai","奶汤蒲菜"],["dish-wuxiangxunyu","五香熏鱼"],["dish-jiangniurou","鲁味酱牛肉"],["dish-shandongjianbing","山东大煎饼"],["dish-basishanyao","拔丝山药"]];
+function build() {
+  var lines = [];
+  for (var i = 0; i < IDS.length; i++) {
+    var id = IDS[i][0], name = IDS[i][1];
+    var sel = document.querySelector('input[name="' + id + '"]:checked');
+    var v = sel ? sel.value : '0';
+    lines.push(id + ' = ' + v + '   # ' + name + (v === '0' ? '(保留插画)' : '(用第 ' + v + ' 张)'));
+  }
+  return lines.join('\n');
+}
+function refresh() { document.getElementById('out').value = build(); }
+document.addEventListener('change', refresh);
+document.getElementById('copy').addEventListener('click', function () {
+  var t = document.getElementById('out');
+  t.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  this.textContent = '已复制';
+  var b = this;
+  setTimeout(function () { b.textContent = '复制清单'; }, 1600);
+});
+refresh();
+</script>
+</body></html>

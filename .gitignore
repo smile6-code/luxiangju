@@ -1,0 +1,12 @@
+# 抓取的照片候选(约 17MB 临时素材,确定不用可整目录删除)
+assets/img/candidates/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

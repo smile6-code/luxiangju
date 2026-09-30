@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>audit</title></head>
+<body><pre id="out">working…</pre>
+<script>
+const NAMES = ["dish-jiuzhuandachang","dish-congshaohaishen","dish-tangculiyu","dish-baochaoyaohua","dish-bazirou","dish-sixiwanzi","dish-youmendaxia","dish-naitangpucai","dish-wuxiangxunyu","dish-jiangniurou","dish-shandongjianbing","dish-basishanyao","dish-dezhoubaji","hero-haishen","env-kitchen","env-hall","env-courtyard","env-tea"];
+const COLS = 60, ROWS = 22;
+const c = document.createElement("canvas");
+c.width = COLS; c.height = ROWS;
+const ctx = c.getContext("2d", { willReadFrequently: true });
+const load = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
+/* 色相分类: . 暗底  @ 器皿亮面  - 器皿灰面  · 中性微暖  o/r 亮橙红  O/R 暗红褐  y/Y 黄  g 绿  c 青  v 紫 */
+function klass(r, g, b) {
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  /* 用彩度(饱和度差)而不是 HSL 饱和度:奶白盘子的彩度极低,酱汁/食材的彩度很高 */
+  const chroma = (max - min) / 255;
+  if (lum < 0.18) return ".";
+  if (chroma < 0.10) return lum > 0.60 ? "@" : lum > 0.34 ? "-" : ",";
+  if (chroma < 0.22) return lum > 0.55 ? "·" : ":";
+  let h = 0;
+  const dlt = max - min;
+  if (max === r) h = ((g - b) / dlt) % 6;
+  else if (max === g) h = (b - r) / dlt + 2;
+  else h = (r - g) / dlt + 4;
+  h *= 60; if (h < 0) h += 360;
+  if (h < 20) return lum > 0.55 ? "r" : "R";
+  if (h < 45) return lum > 0.55 ? "o" : "O";
+  if (h < 72) return lum > 0.5 ? "y" : "Y";
+  if (h < 170) return "g";
+  if (h < 260) return lum > 0.5 ? "c" : "v";
+  return lum > 0.5 ? "p" : "v";
+}
+(async () => {
+  const lines = [];
+  for (const name of NAMES) {
+    const img = await load("../assets/img/" + name + ".svg");
+    if (!img) { lines.push(name + " !! 加载失败\n"); continue; }
+    ctx.clearRect(0, 0, COLS, ROWS);
+    ctx.drawImage(img, 0, 0, COLS, ROWS);
+    const d = ctx.getImageData(0, 0, COLS, ROWS).data;
+    const tally = {};
+    const rows = [];
+    for (let y = 0; y < ROWS; y++) {
+      let line = "";
+      for (let x = 0; x < COLS; x++) {
+        const i = (y * COLS + x) * 4;
+        const ch = klass(d[i], d[i + 1], d[i + 2]);
+        tally[ch] = (tally[ch] || 0) + 1;
+        line += ch;
+      }
+      rows.push(line);
+    }
+    const total = COLS * ROWS;
+    const pct = (ch) => (((tally[ch] || 0) / total) * 100).toFixed(0);
+    lines.push(name + "  器皿@=" + pct("@") + "%  中性·:=" + pct("·") + "+" + pct(":") + "%  亮橙r/o=" + pct("r") + "+" + pct("o") + "%  暗红褐R/O=" + pct("R") + "+" + pct("O") + "%  黄y=" + pct("y") + "%  绿g=" + pct("g") + "%  暗底.=" + pct(".") + "%");
+    lines.push(rows.join("\n"));
+    lines.push("");
+  }
+  document.getElementById("out").textContent = lines.join("\n");
+})();
+</script></body></html>
