@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>水印处理</title>
+<style>html,body{margin:0;padding:0;background:#000;overflow:hidden}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+/* 用扩散(调和)插值把矩形区域填平,再补回与周围一致的噪声,避免"塑料块"感。
+   ?f=文件名(不含扩展名) &x= &y= &w= &h= &dir=..\/..\/ &save=1 */
+const Q = new URLSearchParams(location.search);
+const NAME = Q.get('f') || '';
+const DIR = Q.get('dir') || '../../';
+const EXT = Q.get('ext') || '.png';
+const X = +Q.get('x'), Y = +Q.get('y'), RW = +Q.get('w'), RH = +Q.get('h');
+
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d', { willReadFrequently: true });
+
+const img = new Image();
+img.onload = () => {
+  const W = img.naturalWidth, H = img.naturalHeight;
+  cv.width = W; cv.height = H;
+  ctx.drawImage(img, 0, 0);
+
+  if (RW > 0 && RH > 0) {
+    const x0 = Math.max(1, X), y0 = Math.max(1, Y);
+    const x1 = Math.min(W - 1, X + RW), y1 = Math.min(H - 1, Y + RH);
+    const w = x1 - x0, h = y1 - y0;
+
+    const id = ctx.getImageData(x0, y0, w, h);
+    const d = id.data;
+    const orig = new Uint8ClampedArray(d);
+    const full = ctx.getImageData(0, 0, W, H).data;
+    const at = (x, y) => {
+      const cx = Math.max(0, Math.min(W - 1, x)), cy = Math.max(0, Math.min(H - 1, y));
+      return (cy * W + cx) * 4;
+    };
+
+    // 1) 四条边界各取一排,做双线性插值(Coons 补片),让填充跟随周围的明暗梯度
+    const T = new Float32Array(w * 3);   // 上边一行
+    const B = new Float32Array(w * 3);   // 下边一行
+    const Lc = new Float32Array(h * 3);  // 左边一列
+    const Rc = new Float32Array(h * 3);  // 右边一列
+    {
+      const t = ctx.getImageData(x0, y0 - 1, w, 1).data;
+      const b = ctx.getImageData(x0, y1, w, 1).data;
+      const l = ctx.getImageData(x0 - 1, y0, 1, h).data;
+      const r = ctx.getImageData(x1, y0, 1, h).data;
+      for (let i = 0; i < w; i++)
+        for (let c = 0; c < 3; c++) { T[i*3+c] = t[i*4+c]; B[i*3+c] = b[i*4+c]; }
+      for (let i = 0; i < h; i++)
+        for (let c = 0; c < 3; c++) { Lc[i*3+c] = l[i*4+c]; Rc[i*3+c] = r[i*4+c]; }
+    }
+    for (let yy = 0; yy < h; yy++) {
+      for (let xx = 0; xx < w; xx++) {
+        const wx = (xx + 0.5) / w, wy = (yy + 0.5) / h;
+        const k = (yy * w + xx) * 4;
+        for (let c = 0; c < 3; c++) {
+          const vert = (1 - wy) * T[xx * 3 + c] + wy * B[xx * 3 + c];
+          const horz = (1 - wx) * Lc[yy * 3 + c] + wx * Rc[yy * 3 + c];
+          d[k + c] = 0.5 * vert + 0.5 * horz;
+        }
+        d[k + 3] = 255;
+      }
+    }
+
+    // 2) 轻度模糊,去掉镜像可能带来的对称纹路
+    for (let pass = 0; pass < 4; pass++) {
+      const tmp = new Uint8ClampedArray(d);
+      for (let yy = 1; yy < h - 1; yy++)
+        for (let xx = 1; xx < w - 1; xx++) {
+          const k = (yy * w + xx) * 4;
+          for (let c = 0; c < 3; c++) {
+            let s = 0;
+            for (let dy = -1; dy <= 1; dy++)
+              for (let dx = -1; dx <= 1; dx++) s += tmp[((yy + dy) * w + (xx + dx)) * 4 + c];
+            d[k + c] = s / 9;
+          }
+        }
+    }
+
+    // 3) 边缘羽化,和周围无缝衔接
+    const FE = 10;
+    for (let yy = 0; yy < h; yy++)
+      for (let xx = 0; xx < w; xx++) {
+        const e = Math.min(xx, w - 1 - xx, yy, h - 1 - yy);
+        const a = Math.min(1, e / FE);
+        const k = (yy * w + xx) * 4;
+        for (let c = 0; c < 3; c++) d[k + c] = orig[k + c] * (1 - a) + d[k + c] * a;
+      }
+
+    ctx.putImageData(id, x0, y0);
+  }
+  document.title = 'DONE ' + cv.width + 'x' + cv.height;
+};
+img.onerror = () => { document.title = 'ERR'; };
+img.src = DIR + encodeURIComponent(NAME) + EXT;
+</script>
+</body>
+</html>
